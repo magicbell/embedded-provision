@@ -22,6 +22,7 @@ let package = Package(
         ),
         .testTarget(name: "EmbeddedProvisionTests",
                     dependencies: [ "EmbeddedProvision" ],
-                    path: "Tests")
+                    path: "Tests",
+                    resources: [ .copy("embedded.mobileprovision") ])
     ]
 )
