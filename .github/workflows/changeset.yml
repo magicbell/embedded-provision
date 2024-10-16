@@ -1,0 +1,32 @@
+name: Changeset
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BELLA_ACTION_TOKEN }}
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - uses: bahmutov/npm-install@v1
+
+      - name: Create release PR or publish release
+        uses: changesets/action@v1
+        with:
+          version: yarn changeset version
+          publish: yarn changeset publish
+          commit: 'chore: version package'
+          title: 'chore: version package'
+          createGithubReleases: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
