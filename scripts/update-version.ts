@@ -17,10 +17,12 @@ const replacements = [
       /pod 'EmbeddedProvision', '>=\d\.\d\.\d'/g,
       // Swift Package Manager instructions
       /.upToNextMajor\(from: "\d\.\d\.\d"\)/g,
+      /github "magicbell\/embedded-provision" "\d\.\d\.\d"/g,
     ],
     to: [
       `pod 'EmbeddedProvision', '>=${version}'`,
       `.upToNextMajor(from: "${version}")`,
+      `github "magicbell/embedded-provision" "${version}"`
     ],
   }
 ]

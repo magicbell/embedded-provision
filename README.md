@@ -37,6 +37,18 @@ dependencies: [
 ]
 ```
 
+### Carthage
+
+To install the library using [Carthage](https://github.com/Carthage/Carthage), add the following dependency to the Carfile :
+
+```ruby
+github "magicbell/embedded-provision" "1.0.0"
+```
+
+Then, run `carthage update --use-xcframeworks --platform [iOS|macOS] --no-use-binaries` (selecting the desired platform) to resolve dependencies.
+
+Add the `EmbeddedProvision.xcframework` to your project-linked frameworks, together with the other dependencies resolved by Carthage.
+
 ## FAQ
 
 ### What is an embedded provision?
@@ -44,11 +56,6 @@ dependencies: [
 ### Does this library support macOS?
 
 It might. It wasn't tested though. [PRs are welcome](./CONTRIBUTING.md).
-
-### Does this library support Carthage?
-
-Currently only Cocoapods and Swift Package Manager are supported, but [PRs are welcome](./CONTRIBUTING.md).
-
 
 ## Contributing
 
