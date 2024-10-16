@@ -1,0 +1,31 @@
+
+name: Swift Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Install Dependencies
+        run: brew install xcbeautify
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: SPM Cache
+        uses: actions/cache@v4
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-spm-
+      - name: Build
+        run: swift build --build-tests
+      - name: Test
+        run: set -o pipefail && swift test --skip-build | xcbeautify --renderer github-actions
