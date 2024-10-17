@@ -98,7 +98,7 @@ Apple supports [a lot of different entitlements](https://developer.apple.com/doc
 To install MagicBell using [CocoaPods](https://cocoapods.org), add this entry to your `Podfile`:
 
 ```ruby
-pod 'EmbeddedProvision', '>=0.0.0'
+pod 'EmbeddedProvision', '>=1.0.0'
 ```
 
 **IMPORTANT**: Make sure you specify `use_frameworks!` in your `Podfile`.
@@ -111,7 +111,7 @@ To install the library using [Swift Package Manager](https://www.swift.org/packa
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/magicbell/embedded-provision", .upToNextMajor(from: "0.0.0"))
+    .package(url: "https://github.com/magicbell/embedded-provision", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 
@@ -120,7 +120,7 @@ dependencies: [
 To install the library using [Carthage](https://github.com/Carthage/Carthage), add the following dependency to the Carfile :
 
 ```ruby
-github "magicbell/embedded-provision" "0.0.0"
+github "magicbell/embedded-provision" "1.0.0"
 ```
 
 Then, run `carthage update --use-xcframeworks --platform [iOS|macOS] --no-use-binaries` (selecting the desired platform) to resolve dependencies.
