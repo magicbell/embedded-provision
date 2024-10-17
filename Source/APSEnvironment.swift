@@ -1,6 +1,6 @@
 import Foundation
 
-enum APNSEnvironment: String, Codable, CaseIterable {
+public enum APSEnvironment: String, Decodable, CaseIterable {
     case development
     case production
 }

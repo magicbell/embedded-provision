@@ -10,8 +10,10 @@
 		59799E312746587000BFB375 /* EmbeddedProvision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59799E302746587000BFB375 /* EmbeddedProvision.swift */; };
 		59EF99BC27446D6900FB2378 /* EmbeddedProvision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59EF99B127446D6900FB2378 /* EmbeddedProvision.framework */; };
 		59EF99C127446D6900FB2378 /* EmbeddedProvisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EF99C027446D6900FB2378 /* EmbeddedProvisionTests.swift */; };
-		94691DA22CBFDE900046785A /* APNSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94691DA12CBFDE900046785A /* APNSEnvironment.swift */; };
-		94691DA32CBFDE900046785A /* APNSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94691DA12CBFDE900046785A /* APNSEnvironment.swift */; };
+		9400259F2CC12857000C9264 /* Entitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9400259E2CC12857000C9264 /* Entitlements.swift */; };
+		940025A02CC12857000C9264 /* Entitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9400259E2CC12857000C9264 /* Entitlements.swift */; };
+		94691DA22CBFDE900046785A /* APSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94691DA12CBFDE900046785A /* APSEnvironment.swift */; };
+		94691DA32CBFDE900046785A /* APSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94691DA12CBFDE900046785A /* APSEnvironment.swift */; };
 		94691DAC2CBFFAC80046785A /* embedded.mobileprovision in Resources */ = {isa = PBXBuildFile; fileRef = 94691DA42CBFE83D0046785A /* embedded.mobileprovision */; };
 		94691DAF2CC001190046785A /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94691DAE2CC001190046785A /* Bundle+Testing.swift */; };
 		D2D2161227AC276700A104B8 /* EmbeddedProvision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59799E302746587000BFB375 /* EmbeddedProvision.swift */; };
@@ -56,7 +58,8 @@
 		59EF99B127446D6900FB2378 /* EmbeddedProvision.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EmbeddedProvision.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EF99BB27446D6900FB2378 /* EmbeddedProvisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmbeddedProvisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EF99C027446D6900FB2378 /* EmbeddedProvisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedProvisionTests.swift; sourceTree = "<group>"; };
-		94691DA12CBFDE900046785A /* APNSEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSEnvironment.swift; sourceTree = "<group>"; };
+		9400259E2CC12857000C9264 /* Entitlements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entitlements.swift; sourceTree = "<group>"; };
+		94691DA12CBFDE900046785A /* APSEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSEnvironment.swift; sourceTree = "<group>"; };
 		94691DA42CBFE83D0046785A /* embedded.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = embedded.mobileprovision; sourceTree = "<group>"; };
 		94691DAE2CC001190046785A /* Bundle+Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Testing.swift"; sourceTree = "<group>"; };
 		D280727827A2E40C00FD941A /* EmbeddedProvision.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = EmbeddedProvision.podspec; sourceTree = "<group>"; };
@@ -125,8 +128,9 @@
 		59EF9AC6274471A500FB2378 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9400259E2CC12857000C9264 /* Entitlements.swift */,
 				59799E302746587000BFB375 /* EmbeddedProvision.swift */,
-				94691DA12CBFDE900046785A /* APNSEnvironment.swift */,
+				94691DA12CBFDE900046785A /* APSEnvironment.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -276,7 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				59799E312746587000BFB375 /* EmbeddedProvision.swift in Sources */,
-				94691DA32CBFDE900046785A /* APNSEnvironment.swift in Sources */,
+				940025A02CC12857000C9264 /* Entitlements.swift in Sources */,
+				94691DA32CBFDE900046785A /* APSEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +299,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2D2161227AC276700A104B8 /* EmbeddedProvision.swift in Sources */,
-				94691DA22CBFDE900046785A /* APNSEnvironment.swift in Sources */,
+				9400259F2CC12857000C9264 /* Entitlements.swift in Sources */,
+				94691DA22CBFDE900046785A /* APSEnvironment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

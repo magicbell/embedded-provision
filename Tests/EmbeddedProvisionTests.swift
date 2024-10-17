@@ -9,108 +9,87 @@ let existingProvisionURL: URL = {
 
 let missingProvisionURL: URL = URL(fileURLWithPath: "/tmp/non-existent.provisionprofile")
 
-@Suite
-struct embeddedProvisionPlist {
+@Suite("Loading")
+struct EmbeddedProvisionLoading {
     @Test("is present for existing provision")
-    func extistingProvision_isPresent() throws {
-        let provision = EmbeddedProvision(provisionFileURL: existingProvisionURL)
+    func extistingProvision() throws {
+        let provision = try! EmbeddedProvision.load(from: existingProvisionURL)
 
-        #expect(provision.embeddedProvisionPlist != nil)
+        #expect(provision != nil)
     }
 
-    @Test("is nil for missing provision")
-    func missingProvision_isNil() throws {
-        let provision = EmbeddedProvision(provisionFileURL: missingProvisionURL)
-
-        #expect(provision.embeddedProvisionPlist == nil)
+    @Test("throws for missing or invalid provision")
+    func missingProvision() throws {
+        #expect(throws: EmbeddedProvisionError.decodingError) {
+            try EmbeddedProvision.load(from: missingProvisionURL)
+        }
     }
 
     @Test("is nil for missing provision in test bundle")
     func embeddedProvisionPlist_onTestBundleProvision_isNil() throws {
-        let provision = EmbeddedProvision()
+        let provision = try! EmbeddedProvision.load()
 
-        #expect(provision.embeddedProvisionPlist == nil)
+        #expect(provision == nil)
     }
 }
 
-@Suite
-struct hasEmbeddedProvision {
-    @Test("is true for existing provision")
-    func existingProvision_isTrue() throws {
-        let provision = EmbeddedProvision(provisionFileURL: existingProvisionURL)
+@Suite("Property parsing")
+struct EmbeddedProvisionProperties {
+    let provision = try! EmbeddedProvision.load(from: existingProvisionURL)
 
-        #expect(provision.hasEmbeddedProvision)
+    //    public let entitlements: Entitlements
+    @Test("parses name")
+    func name() throws {
+        #expect(provision.name == "iOS Team Provisioning Profile: com.magicbell.fake-bundle-id")
     }
 
-    @Test("is false for missing provision")
-    func missingProvision_isFalse() throws {
-        let provision = EmbeddedProvision(provisionFileURL: missingProvisionURL)
-
-        #expect(provision.hasEmbeddedProvision == false)
-    }
-}
-
-@Suite
-struct entitlements {
-    @Test("is present for existing provision")
-    func extistingProvision_isPresent() throws {
-        let provision = EmbeddedProvision(provisionFileURL: existingProvisionURL)
-
-        #expect(provision.entitlements != nil)
+    @Test("parses app ID")
+    func appIDName() throws {
+        #expect(provision.appIDName == "A Fake App for Testing")
     }
 
-    @Test("is nil for missing provision")
-    func missingProvision_isNil() throws {
-        let provision = EmbeddedProvision(provisionFileURL: missingProvisionURL)
-
-        #expect(provision.entitlements == nil)
-    }
-}
-
-@Suite
-struct apnsEnvironment {
-    @Test("is present for existing provision")
-    func extistingProvision_isPresent() throws {
-        let provision = EmbeddedProvision(provisionFileURL: existingProvisionURL)
-
-        #expect(provision.apnsEnvironment != nil)
+    @Test("parses platform")
+    func platform() throws {
+        #expect(provision.platform == ["iOS", "xrOS", "visionOS"])
     }
 
-    @Test("is present for existing provision")
-    func extistingProvision_isCorrect() throws {
-        let provision = EmbeddedProvision(provisionFileURL: existingProvisionURL)
-
-        #expect(provision.apnsEnvironment == .production)
+    @Test("parses isXcodeManaged")
+    func isXcodeManaged() throws {
+        #expect(provision.isXcodeManaged == true)
     }
 
-    @Test("is nil for missing provision")
-    func missingProvision_isNil() throws {
-        let provision = EmbeddedProvision(provisionFileURL: missingProvisionURL)
+    @Test("parses creationDate")
+    func creationDate() throws {
+        #expect(provision.creationDate == Date(timeIntervalSince1970: 1711018098))
+    }
 
-        #expect(provision.apnsEnvironment == nil)
+    @Test("parses expirationDate")
+    func expirationDate() throws {
+        #expect(provision.expirationDate == Date(timeIntervalSince1970: 1742554098))
     }
 }
 
-@Suite
-struct teamId {
-    @Test("is present for existing provision")
-    func extistingProvision_isPresent() throws {
-        let provision = EmbeddedProvision(provisionFileURL: existingProvisionURL)
+@Suite("Entitlement parsing")
+struct EmbeddedProvisionEntitlements {
+    let entitlements = try! EmbeddedProvision.load(from: existingProvisionURL).entitlements
 
-        #expect(provision.teamId != nil)
+    @Test("parses keychainAccessGroups")
+    func keychainAccessGroups() throws {
+        #expect(entitlements.keychainAccessGroups == ["FAKETEAMID.*", "com.apple.token"])
     }
 
-    @Test("is present for existing provision")
-    func extistingProvision_isCorrect() throws {
-        let provision = EmbeddedProvision(provisionFileURL: existingProvisionURL)
-
-        #expect(provision.teamId == "FAKETEAMID")
+    @Test("parses getTaskAllow")
+    func getTaskAllow() throws {
+        #expect(entitlements.getTaskAllow == true)
     }
 
-    @Test("is nil for missing provision")
-    func missingProvision_isNil() throws {
-        let provision = EmbeddedProvision(provisionFileURL: missingProvisionURL)
+    @Test("parses apsEnvironment")
+    func apsEnvironment() throws {
+        #expect(entitlements.apsEnvironment == .production)
+    }
 
-        #expect(provision.teamId == nil)
+    @Test("parses teamId")
+    func teamId() throws {
+        #expect(entitlements.teamId == "FAKETEAMID")
     }
 }

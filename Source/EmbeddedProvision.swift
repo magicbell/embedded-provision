@@ -4,61 +4,53 @@ import Foundation
 // https://github.com/expo/expo/blob/c158ef23812c2995f326c51565b189e234948885/packages/expo-application/ios/EXApplication/EXProvisioningProfile.m#L28 (MIT License)
 // and https://github.com/doneservices/ApsEnvironment/blob/221afddd19be77f9a5a943be637a8cc7e9dfeb94/Sources/ApsEnvironment/ApsEnvironment.swift#L4 (MIT License)
 
-public class EmbeddedProvision {
+public enum EmbeddedProvisionError: Error {
+    case decodingError
+}
 
-    init(provisionFileURL: URL? = nil) {
-        embeddedProvisionFileURL = provisionFileURL
+public struct EmbeddedProvision: Decodable {
+    public let name: String
+    public let appIDName: String
+    public let platform: [String]
+    public let isXcodeManaged: Bool?
+    public let creationDate: Date
+    public let expirationDate: Date
+    public let entitlements: Entitlements
+
+    private enum CodingKeys : String, CodingKey {
+        case name = "Name"
+        case appIDName = "AppIDName"
+        case platform = "Platform"
+        case isXcodeManaged = "IsXcodeManaged"
+        case creationDate = "CreationDate"
+        case expirationDate = "ExpirationDate"
+        case entitlements = "Entitlements"
     }
-    /**
-     - SeeAlso: [TN3125 - Profile Location](https://developer.apple.com/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles#Profile-location)
+}
 
-     - Returns: A file URL pinting to the location of the mobile provision, or nil.
-     */
-    lazy var embeddedProvisionFileURL: URL? = {
-        if let iOSURL = Bundle.main.url(forResource: "embedded", withExtension: "mobileprovision") {
-            return iOSURL
-        }
-        if let macOSURL = Bundle.main.url(forResource: "embedded", withExtension:"provisionprofile", subdirectory: "Contents") {
-            return macOSURL
-        }
-        return nil
-    }()
+extension EmbeddedProvision {
+    public static func guessEmbeddedProvisionProfileURL() -> URL? {
+        // [TN3125 - Profile Location](https://developer.apple.com/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles#Profile-location)
+        let iOSURL = Bundle.main.url(forResource: "embedded", withExtension: "mobileprovision")
+        let macOSURL = Bundle.main.url(forResource: "embedded", withExtension:"provisionprofile", subdirectory: "Contents")
+        return iOSURL ?? macOSURL
+    }
 
-    /**
-     - Returns: A stringly typed map of values inside the provision profile, if present.
-     */
-    lazy var embeddedProvisionPlist: [String: AnyObject]? = {
+    public static func load() throws -> EmbeddedProvision? {
+        guard let url = guessEmbeddedProvisionProfileURL() else { return nil }
+        return try load(from: url)
+    }
+
+    public static func load(from profileURL: URL) throws -> EmbeddedProvision {
+        // The provisioning profile is contained as plain text in a signed plist.
+        // We're not (yet?) validating the signature, but are simply extracting the plist XML data.
         guard
-            let url = embeddedProvisionFileURL,
-            let data = try? Data(contentsOf: url),
+            let data = try? Data(contentsOf: profileURL),
             let open = data.range(of: "<plist".data(using: .ascii)!),
             let close = data.range(of: "</plist>".data(using: .ascii)!, options: [], in: open.lowerBound..<data.endIndex),
-            let rawPlist = try? PropertyListSerialization.propertyList(from: data[open.lowerBound..<close.upperBound], options: [], format: nil),
-            let plist = rawPlist as? [String: AnyObject] else {
-            return nil
+            let mobileProvision = try? PropertyListDecoder().decode(EmbeddedProvision.self, from: data[open.lowerBound..<close.upperBound]) else {
+            throw EmbeddedProvisionError.decodingError
         }
-        return plist
-    }()
-
-    /**
-     Wether the app has an embedded provision.
-
-     Will return false on Simulator builds.
-
-     - Returns: A boolean indicating wether the app contains an embedded provision
-     */
-    lazy var hasEmbeddedProvision: Bool = embeddedProvisionPlist != nil
-
-
-    lazy var entitlements: [String: AnyObject]? = embeddedProvisionPlist?["Entitlements"] as? [String: AnyObject]
-
-    lazy var apnsEnvironment: APNSEnvironment? = {
-        guard let environmentString = entitlements?["aps-environment"] as? String,
-              let environment = APNSEnvironment(rawValue: environmentString) else {
-            return nil
-        }
-        return environment
-    }()
-
-    lazy var teamId: String? = entitlements?["com.apple.developer.team-identifier"] as? String
+        return mobileProvision
+    }
 }
