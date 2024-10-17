@@ -8,7 +8,11 @@ We want this community to be friendly and respectful to each other. Please follo
 
 ## Development workflow
 
-... TBD ...
+1. Do your changes
+1. Test them in the example app and via `swift test`
+1. Consider [adding a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) via `yarn changeset`
+1. Open a PR and describe your change
+
 
 ### Sending a pull request
 
