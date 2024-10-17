@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.name             = 'EmbeddedProvision'
   s.version          = package['version']
   s.summary          = 'Embedded Provision'
-  s.description      = 'Handy helpers for reading values from an applications embedded provision profiles.'
+  s.description      = 'Handy helpers for reading values from an applications embedded provision profile.'
 
   s.homepage         = 'https://magicbell.com'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

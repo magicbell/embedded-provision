@@ -7,12 +7,12 @@
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://github.com/magicbell/embedded-provisioning?tab=readme-ov-file#swift-package-manager)
 [![Swift Tests](https://github.com/magicbell/embedded-provision/actions/workflows/spm-test.yml/badge.svg)](https://github.com/magicbell/embedded-provision/actions/workflows/spm-test.yml)
 
-✨ Handy helpers for reading values from an applications embedded provision profiles.
+✨ Handy helpers for reading values from an applications embedded provision profile.
 
 Embedded provision profiles can answer many questions about where and how an iOS or macOS application is running, like:
 - Is this app deployed to the AppStore or distributed internally?
 - Which push notification environment is the application signed for?
-- What's the Apple developer team ID that was used to sign the app
+- What's the Apple developer team ID that was used to sign the app?
 
 ... and more!
 
