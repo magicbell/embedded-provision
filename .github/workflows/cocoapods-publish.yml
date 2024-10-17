@@ -1,0 +1,28 @@
+name: Cocoapods Publish
+
+on:
+  release:
+    types: [created]
+
+env:
+  COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+          bundler-cache: true # also runs 'bundle install'
+
+      - name: Sanity Check
+        run: bundle exec pod spec lint
+
+      - name: Publish to Cocoapods
+        run: bundle exec pod trunk push
