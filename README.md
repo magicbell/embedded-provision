@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/cocoapods/v/EmbeddedProvision.svg?style=flat)](http://cocoapods.org/pods/embeddedprovision)
 [![License](https://img.shields.io/cocoapods/l/EmbeddedProvision.svg?style=flat)](./LICENSE)
-[![Platform](https://img.shields.io/cocoapods/p/EmbeddedProvisiog.svg?style=flat)](http://cocoapods.org/pods/embeddedprovision)
+[![Platform](https://img.shields.io/cocoapods/p/EmbeddedProvision.svg?style=flat)](http://cocoapods.org/pods/embeddedprovision)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/magicbell/embedded-provision?tab=readme-ov-file#carthage)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://github.com/magicbell/embedded-provision?tab=readme-ov-file#swift-package-manager)
 [![Swift Tests](https://github.com/magicbell/embedded-provision/actions/workflows/spm-test.yml/badge.svg)](https://github.com/magicbell/embedded-provision/actions/workflows/spm-test.yml)
