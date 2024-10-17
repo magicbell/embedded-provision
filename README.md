@@ -45,6 +45,9 @@ catch {
 
 - [Quick Start](#quick-start)
 - [Table of Contents](#table-of-contents)
+- [API](#api)
+    - [Properties](#properties)
+    - [Entitlements](#entitlements)
 - [Installation](#installation)
     - [CocoaPods](#cocoapods)
     - [Swift Package Manager](#swift-package-manager)
@@ -56,6 +59,37 @@ catch {
 - [Contributing](#contributing)
 
 <!-- /TOC -->
+
+## API
+
+You can load your applications embedded provisioning profile by using `EmbeddedProvision.load()`. This will look for the profile inside your apps bundle under `embedded.mobileprovision` (on iOS) or `Contents/embedded.provisionprofile` (on macOS).
+
+### Properties
+
+Once you have an instance of `EmbeddedProvision` at hand you have access to the following properties that are more about describing the profile itself:
+
+| Property         | Signature      | Discussion                                                              |
+| ---------------- | -------------- | ----------------------------------------------------------------------- |
+| `name`           | `String`       | The name of the profile that was used to sign your app                  |
+| `appIDName`      | `String`       | The name of the app ID (as provided in the developer portal)            |
+| `platform`       | `[String]`     | A list of supported platforms (i.e. `iOS`, `visionOS`, `xrOS` and more) |
+| `isXcodeManaged` | `Bool?`        | Wether the profile is managed by Xcode                                  |
+| `creationDate`   | `Date`         | When the profile was created                                            |
+| `expirationDate` | `Date`         | When the profile will expire                                            |
+| `entitlements`   | `Entitlements` | The actual content of the profile. See the below.                       |
+
+
+### Entitlements
+
+Apple supports [a lot of different entitlements](https://developer.apple.com/documentation/bundleresources/entitlements). This library is at the moment only decoding a minimum of them. If you need any other entitlement, please add it and [open a PR](#contributing).
+
+| Entitlement            | Signature         | Discussion                                                                                                          |
+| ---------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `keychainAccessGroups` | `[String]`        | A list of application IDs (including wildcards) of keychains this app can access                                    |
+| `getTaskAllow`         | `Bool`            | Wether a debugger can attach to the running app. Should be `false` for distributed builds                           |
+| `apsEnvironment`       | `APSEnvironment?` | If the app supports push notifications, this property tells you which APNs (formerly APS) environment to use        |
+| `teamId`               | `String`          | The identifier of the developer team this app was signed for. This impacts i.e. which APNs push keys should be used |
+
 
 ## Installation
 
