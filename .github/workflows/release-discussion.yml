@@ -13,10 +13,11 @@ jobs:
 
     steps:
       - name: publish discussion
-        uses: magicbell/release-discussion-action@main
+        uses: magicbell/release-discussion-action@release-prefix
         with:
           repo: magicbell/community
           category: product-changelog
           cycle: week
+          release-prefix: embedded-provision
         env:
           GITHUB_TOKEN: ${{ secrets.BELLA_ACTION_TOKEN }}
