@@ -15,7 +15,7 @@ jobs:
         with:
           xcode-version: latest-stable
       - name: Install Dependencies
-        run: brew install xcbeautify
+        run: brew update && brew install --force xcbeautify
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: SPM Cache
