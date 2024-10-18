@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/cocoapods/v/EmbeddedProvision.svg?style=flat)](http://cocoapods.org/pods/embeddedprovision)
 [![License](https://img.shields.io/cocoapods/l/EmbeddedProvision.svg?style=flat)](./LICENSE)
-[![Platform](https://img.shields.io/cocoapods/p/EmbeddedProvisiog.svg?style=flat)](http://cocoapods.org/pods/embeddedprovision)
+[![Platform](https://img.shields.io/cocoapods/p/EmbeddedProvision.svg?style=flat)](http://cocoapods.org/pods/embeddedprovision)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/magicbell/embedded-provision?tab=readme-ov-file#carthage)
 [![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg)](https://github.com/magicbell/embedded-provision?tab=readme-ov-file#swift-package-manager)
 [![Swift Tests](https://github.com/magicbell/embedded-provision/actions/workflows/spm-test.yml/badge.svg)](https://github.com/magicbell/embedded-provision/actions/workflows/spm-test.yml)
@@ -98,7 +98,7 @@ Apple supports [a lot of different entitlements](https://developer.apple.com/doc
 To install MagicBell using [CocoaPods](https://cocoapods.org), add this entry to your `Podfile`:
 
 ```ruby
-pod 'EmbeddedProvision', '>=1.0.0'
+pod 'EmbeddedProvision', '>=1.0.1'
 ```
 
 **IMPORTANT**: Make sure you specify `use_frameworks!` in your `Podfile`.
@@ -111,7 +111,7 @@ To install the library using [Swift Package Manager](https://www.swift.org/packa
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/magicbell/embedded-provision", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/magicbell/embedded-provision", .upToNextMajor(from: "1.0.1"))
 ]
 ```
 
@@ -120,7 +120,7 @@ dependencies: [
 To install the library using [Carthage](https://github.com/Carthage/Carthage), add the following dependency to the Carfile :
 
 ```ruby
-github "magicbell/embedded-provision" "1.0.0"
+github "magicbell/embedded-provision" "1.0.1"
 ```
 
 Then, run `carthage update --use-xcframeworks --platform [iOS|macOS] --no-use-binaries` (selecting the desired platform) to resolve dependencies.
