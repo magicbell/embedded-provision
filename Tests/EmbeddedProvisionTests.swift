@@ -40,12 +40,12 @@ struct EmbeddedProvisionProperties {
     //    public let entitlements: Entitlements
     @Test("parses name")
     func name() throws {
-        #expect(provision.name == "iOS Team Provisioning Profile: com.magicbell.fake-bundle-id")
+        #expect(provision.name == "iOS Team Provisioning Profile: pushinfo.example")
     }
 
     @Test("parses app ID")
     func appIDName() throws {
-        #expect(provision.appIDName == "A Fake App for Testing")
+        #expect(provision.appIDName == "XC pushinfo example")
     }
 
     @Test("parses platform")
@@ -60,12 +60,12 @@ struct EmbeddedProvisionProperties {
 
     @Test("parses creationDate")
     func creationDate() throws {
-        #expect(provision.creationDate == Date(timeIntervalSince1970: 1711018098))
+        #expect(provision.creationDate.timeIntervalSince1970 == 1729244250)
     }
 
     @Test("parses expirationDate")
     func expirationDate() throws {
-        #expect(provision.expirationDate == Date(timeIntervalSince1970: 1742554098))
+        #expect(provision.expirationDate.timeIntervalSince1970 == 1760780250)
     }
 }
 
@@ -75,7 +75,7 @@ struct EmbeddedProvisionEntitlements {
 
     @Test("parses keychainAccessGroups")
     func keychainAccessGroups() throws {
-        #expect(entitlements.keychainAccessGroups == ["FAKETEAMID.*", "com.apple.token"])
+        #expect(entitlements.keychainAccessGroups == ["7847W99F5L.*", "com.apple.token"])
     }
 
     @Test("parses getTaskAllow")
@@ -85,11 +85,11 @@ struct EmbeddedProvisionEntitlements {
 
     @Test("parses apsEnvironment")
     func apsEnvironment() throws {
-        #expect(entitlements.apsEnvironment == .production)
+        #expect(entitlements.apsEnvironment == .development)
     }
 
     @Test("parses teamId")
     func teamId() throws {
-        #expect(entitlements.teamId == "FAKETEAMID")
+        #expect(entitlements.teamId == "7847W99F5L")
     }
 }
