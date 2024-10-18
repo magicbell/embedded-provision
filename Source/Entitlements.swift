@@ -1,10 +1,10 @@
 import Foundation
 
 public struct Entitlements: Decodable {
-    let keychainAccessGroups: [String]
-    let getTaskAllow: Bool
-    let apsEnvironment: APSEnvironment?
-    let teamId: String
+    public let keychainAccessGroups: [String]
+    public let getTaskAllow: Bool
+    public let apsEnvironment: APSEnvironment?
+    public let teamId: String
 
     private enum CodingKeys: String, CodingKey {
         case keychainAccessGroups = "keychain-access-groups"
