@@ -47,19 +47,35 @@ extension EmbeddedProvision {
 
     public static func load(from profileURL: URL) throws -> EmbeddedProvision {
 
-        guard
-            let data = try? Data(contentsOf: profileURL),
-            let pkcs7 = try? PKCS7(data: data),
-            let receiptInfo = pkcs7.receipt()
-            // let receiptASN1 = try ASN1Decoder.decode(receiptInfo)
-
-        else {
+        guard let data = try? Data(contentsOf: profileURL) else {
             throw EmbeddedProvisionError.decodingError
         }
 
-        dump(receiptInfo)
+        guard let pkcs7 = try? PKCS7(data: data) else {
+            throw EmbeddedProvisionError.decodingError
+        }
 
-        throw EmbeddedProvisionError.decodingError
-        //return mobileProvision
+        let mainBlock = pkcs7.mainBlock
+
+        guard let block = mainBlock.findOid(.pkcs7data) else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        guard let octetStringBlock = block.parent?.sub(1)?.sub(0) else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        guard let xmlString = octetStringBlock.value as? String else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        guard let plistData = xmlString.data(using: .utf8) else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        let mobileProvision = try PropertyListDecoder().decode(
+            EmbeddedProvision.self, from: plistData)
+
+        return mobileProvision
     }
 }
