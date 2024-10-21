@@ -20,6 +20,12 @@ fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
 }
 
+[ "$CI" = true ] || export CI=false
+if "$CI"; then
+  info 'Not running git pre-push hook tests on CI'
+  exit 0
+fi
+
 info 'Running tests before pushing'
 
 xcrun swift test
