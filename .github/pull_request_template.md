@@ -17,4 +17,4 @@
 - [ ] A [changeset] is included, or the change is not noteworthy enough to warrant one
 
 <!-- links -->
-[changeset]: https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md#i-am-in-a-single-package-repository
+[changeset]: ../CONTRIBUTING.md#changesets

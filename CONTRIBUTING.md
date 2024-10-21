@@ -21,9 +21,25 @@ yarn install
 
 1. Do your changes
 1. Test them in the example app and via `swift test`
-1. Consider [adding a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) via `yarn changeset`
+1. Consider [adding a changeset](#changesets) via `yarn changeset`
 1. Open a PR and describe your change
 
+### Changesets
+
+We use a tool called [Changesets](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md) to manage our releases.
+If you make a significant change that justifies a version bump you can add one by running `yarn changeset`.
+
+We use [semantic versioning](https://semver.org). The gist is:
+
+> MAJOR version when you make incompatible API changes
+> MINOR version when you add functionality in a backward compatible manner
+> PATCH version when you make backward compatible bug fixes
+
+Minor and patch version changes typically only need one line of explanation. Major version bumps should include an explanation of the breaking changes and upgrade steps.
+
+### Automated releases
+
+Once your PR with a changeset merges, an automated GitHub workflow kicks into gears and prepares a new release PR. You will automatically be tagged in that PR and can follow the release to see when your changes become publicly available.
 
 ### Sending a pull request
 
