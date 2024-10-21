@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: publish discussion
-        uses: magicbell/release-discussion-action@release-prefix
+        uses: magicbell/release-discussion-action@main
         with:
           repo: magicbell/community
           category: product-changelog
