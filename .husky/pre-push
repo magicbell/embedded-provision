@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Continue, even when tests fail
+# We'll capture and forward the exit code, but we also want to finish echoing out logs
+set +e
+
+info () {
+  printf "  [ \033[00;33mINFO\033[0m ] $1\n"
+}
+
+user () {
+  printf "\r  [ \033[0;33m?\033[0m ] $1\n"
+}
+
+success () {
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+fail () {
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+}
+
+info 'Running tests before pushing'
+
+xcrun swift test
+result=$?
+
+if [[ $result == 0 ]]; then
+  success 'All tests passed. Proceeding with push.'
+else
+  fail 'Test failed. Aborting push'
+  user 'Want to proceed to push without tests: git push --no-verify'
+fi
+
+exit $result
