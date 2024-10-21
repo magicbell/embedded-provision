@@ -1,5 +1,6 @@
-import Testing
 import Foundation
+import Testing
+
 @testable import EmbeddedProvision
 
 let existingProvisionURL: URL = {
@@ -60,12 +61,12 @@ struct EmbeddedProvisionProperties {
 
     @Test("parses creationDate")
     func creationDate() throws {
-        #expect(provision.creationDate.timeIntervalSince1970 == 1729244250)
+        #expect(provision.creationDate.timeIntervalSince1970 == 1_729_244_250)
     }
 
     @Test("parses expirationDate")
     func expirationDate() throws {
-        #expect(provision.expirationDate.timeIntervalSince1970 == 1760780250)
+        #expect(provision.expirationDate.timeIntervalSince1970 == 1_760_780_250)
     }
 }
 

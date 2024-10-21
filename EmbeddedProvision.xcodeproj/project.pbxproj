@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		59799E312746587000BFB375 /* EmbeddedProvision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59799E302746587000BFB375 /* EmbeddedProvision.swift */; };
-		59EF99BC27446D6900FB2378 /* EmbeddedProvision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59EF99B127446D6900FB2378 /* EmbeddedProvision.framework */; };
 		59EF99C127446D6900FB2378 /* EmbeddedProvisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EF99C027446D6900FB2378 /* EmbeddedProvisionTests.swift */; };
 		9400259F2CC12857000C9264 /* Entitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9400259E2CC12857000C9264 /* Entitlements.swift */; };
 		940025A02CC12857000C9264 /* Entitlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9400259E2CC12857000C9264 /* Entitlements.swift */; };
@@ -16,16 +15,19 @@
 		94691DA32CBFDE900046785A /* APSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94691DA12CBFDE900046785A /* APSEnvironment.swift */; };
 		94691DAC2CBFFAC80046785A /* embedded.mobileprovision in Resources */ = {isa = PBXBuildFile; fileRef = 94691DA42CBFE83D0046785A /* embedded.mobileprovision */; };
 		94691DAF2CC001190046785A /* Bundle+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94691DAE2CC001190046785A /* Bundle+Testing.swift */; };
+		9D71CE412CC1C3E800970263 /* ASN1Decoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9D71CE402CC1C3E800970263 /* ASN1Decoder */; };
+		9D71CE432CC1C7E700970263 /* ASN1Decoder in Frameworks */ = {isa = PBXBuildFile; productRef = 9D71CE422CC1C7E700970263 /* ASN1Decoder */; };
+		9D71CE462CC1C81000970263 /* EmbeddedProvision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D2163227AC276700A104B8 /* EmbeddedProvision.framework */; };
 		D2D2161227AC276700A104B8 /* EmbeddedProvision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59799E302746587000BFB375 /* EmbeddedProvision.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		59EF99BD27446D6900FB2378 /* PBXContainerItemProxy */ = {
+		9D71CE482CC1C81000970263 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 59EF99A827446D6900FB2378 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 59EF99B027446D6900FB2378;
-			remoteInfo = MagicBell;
+			remoteGlobalIDString = D2D215DA27AC276700A104B8;
+			remoteInfo = "EmbeddedProvision-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D71CE432CC1C7E700970263 /* ASN1Decoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59EF99BC27446D6900FB2378 /* EmbeddedProvision.framework in Frameworks */,
+				9D71CE462CC1C81000970263 /* EmbeddedProvision.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D71CE412CC1C3E800970263 /* ASN1Decoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +105,7 @@
 				D280727827A2E40C00FD941A /* EmbeddedProvision.podspec */,
 				59EF9AC6274471A500FB2378 /* Source */,
 				59EF99BF27446D6900FB2378 /* Tests */,
+				9D71CE3F2CC1C3E800970263 /* Frameworks */,
 				59EF99B227446D6900FB2378 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -133,6 +138,13 @@
 				94691DA12CBFDE900046785A /* APSEnvironment.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		9D71CE3F2CC1C3E800970263 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,7 +197,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				59EF99BE27446D6900FB2378 /* PBXTargetDependency */,
+				9D71CE492CC1C81000970263 /* PBXTargetDependency */,
 			);
 			name = EmbeddedProvisionTests;
 			productName = MagicBellTests;
@@ -238,6 +250,9 @@
 				Base,
 			);
 			mainGroup = 59EF99A727446D6900FB2378;
+			packageReferences = (
+				9D71CE3C2CC1C37700970263 /* XCRemoteSwiftPackageReference "ASN1Decoder" */,
+			);
 			productRefGroup = 59EF99B227446D6900FB2378 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -307,10 +322,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		59EF99BE27446D6900FB2378 /* PBXTargetDependency */ = {
+		9D71CE492CC1C81000970263 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 59EF99B027446D6900FB2378 /* EmbeddedProvision-iOS */;
-			targetProxy = 59EF99BD27446D6900FB2378 /* PBXContainerItemProxy */;
+			target = D2D215DA27AC276700A104B8 /* EmbeddedProvision-macOS */;
+			targetProxy = 9D71CE482CC1C81000970263 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -500,6 +515,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -522,6 +538,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -639,6 +656,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D71CE3C2CC1C37700970263 /* XCRemoteSwiftPackageReference "ASN1Decoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/filom/ASN1Decoder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D71CE402CC1C3E800970263 /* ASN1Decoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D71CE3C2CC1C37700970263 /* XCRemoteSwiftPackageReference "ASN1Decoder" */;
+			productName = ASN1Decoder;
+		};
+		9D71CE422CC1C7E700970263 /* ASN1Decoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D71CE3C2CC1C37700970263 /* XCRemoteSwiftPackageReference "ASN1Decoder" */;
+			productName = ASN1Decoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 59EF99A827446D6900FB2378 /* Project object */;
 }

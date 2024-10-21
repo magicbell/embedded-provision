@@ -1,4 +1,7 @@
+import ASN1Decoder
 import Foundation
+
+// import Security
 
 // Inspired by Expo
 // https://github.com/expo/expo/blob/c158ef23812c2995f326c51565b189e234948885/packages/expo-application/ios/EXApplication/EXProvisioningProfile.m#L28 (MIT License)
@@ -17,7 +20,7 @@ public struct EmbeddedProvision: Decodable {
     public let expirationDate: Date
     public let entitlements: Entitlements
 
-    private enum CodingKeys : String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case name = "Name"
         case appIDName = "AppIDName"
         case platform = "Platform"
@@ -32,7 +35,8 @@ extension EmbeddedProvision {
     public static func guessEmbeddedProvisionProfileURL() -> URL? {
         // [TN3125 - Profile Location](https://developer.apple.com/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles#Profile-location)
         let iOSURL = Bundle.main.url(forResource: "embedded", withExtension: "mobileprovision")
-        let macOSURL = Bundle.main.url(forResource: "embedded", withExtension:"provisionprofile", subdirectory: "Contents")
+        let macOSURL = Bundle.main.url(
+            forResource: "embedded", withExtension: "provisionprofile", subdirectory: "Contents")
         return iOSURL ?? macOSURL
     }
 
@@ -42,15 +46,36 @@ extension EmbeddedProvision {
     }
 
     public static func load(from profileURL: URL) throws -> EmbeddedProvision {
-        // The provisioning profile is contained as plain text in a signed plist.
-        // We're not (yet?) validating the signature, but are simply extracting the plist XML data.
-        guard
-            let data = try? Data(contentsOf: profileURL),
-            let open = data.range(of: "<plist".data(using: .ascii)!),
-            let close = data.range(of: "</plist>".data(using: .ascii)!, options: [], in: open.lowerBound..<data.endIndex),
-            let mobileProvision = try? PropertyListDecoder().decode(EmbeddedProvision.self, from: data[open.lowerBound..<close.upperBound]) else {
+
+        guard let data = try? Data(contentsOf: profileURL) else {
             throw EmbeddedProvisionError.decodingError
         }
+
+        guard let pkcs7 = try? PKCS7(data: data) else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        let mainBlock = pkcs7.mainBlock
+
+        guard let block = mainBlock.findOid(.pkcs7data) else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        guard let octetStringBlock = block.parent?.sub(1)?.sub(0) else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        guard let xmlString = octetStringBlock.value as? String else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        guard let plistData = xmlString.data(using: .utf8) else {
+            throw EmbeddedProvisionError.decodingError
+        }
+
+        let mobileProvision = try PropertyListDecoder().decode(
+            EmbeddedProvision.self, from: plistData)
+
         return mobileProvision
     }
 }
