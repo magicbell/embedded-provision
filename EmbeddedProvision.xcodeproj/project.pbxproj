@@ -59,7 +59,7 @@
 		59799E302746587000BFB375 /* EmbeddedProvision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedProvision.swift; sourceTree = "<group>"; };
 		59EF99B127446D6900FB2378 /* EmbeddedProvision.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EmbeddedProvision.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59EF99BB27446D6900FB2378 /* EmbeddedProvisionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmbeddedProvisionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		59EF99C027446D6900FB2378 /* EmbeddedProvisionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedProvisionTests.swift; sourceTree = "<group>"; };
+		59EF99C027446D6900FB2378 /* EmbeddedProvisionTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EmbeddedProvisionTests.swift; sourceTree = "<group>"; tabWidth = 4; };
 		9400259E2CC12857000C9264 /* Entitlements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entitlements.swift; sourceTree = "<group>"; };
 		94691DA12CBFDE900046785A /* APSEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APSEnvironment.swift; sourceTree = "<group>"; };
 		94691DA42CBFE83D0046785A /* embedded.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = embedded.mobileprovision; sourceTree = "<group>"; };

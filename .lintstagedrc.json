@@ -1,0 +1,6 @@
+{
+  "*.swift": [
+    "xcrun swift-format format -i --parallel",
+    "xcrun swift-format lint --parallel --strict"
+  ]
+}

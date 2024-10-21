@@ -8,7 +8,8 @@ let existingProvisionURL: URL = {
     return fixturesBaseURL.appendingPathComponent("embedded.mobileprovision")
 }()
 
-let missingProvisionURL: URL = URL(fileURLWithPath: "/tmp/non-existent.provisionprofile")
+let missingProvisionURL: URL = URL(
+    fileURLWithPath: "/tmp/non-existent.provisionprofile")
 
 @Suite("Loading")
 struct EmbeddedProvisionLoading {
@@ -27,7 +28,7 @@ struct EmbeddedProvisionLoading {
     }
 
     @Test("is nil for missing provision in test bundle")
-    func embeddedProvisionPlist_onTestBundleProvision_isNil() throws {
+    func defaultProvision() throws {
         let provision = try! EmbeddedProvision.load()
 
         #expect(provision == nil)
@@ -41,7 +42,8 @@ struct EmbeddedProvisionProperties {
     //    public let entitlements: Entitlements
     @Test("parses name")
     func name() throws {
-        #expect(provision.name == "iOS Team Provisioning Profile: pushinfo.example")
+        #expect(
+            provision.name == "iOS Team Provisioning Profile: pushinfo.example")
     }
 
     @Test("parses app ID")
@@ -72,11 +74,15 @@ struct EmbeddedProvisionProperties {
 
 @Suite("Entitlement parsing")
 struct EmbeddedProvisionEntitlements {
-    let entitlements = try! EmbeddedProvision.load(from: existingProvisionURL).entitlements
+    let entitlements = try! EmbeddedProvision.load(from: existingProvisionURL)
+        .entitlements
 
     @Test("parses keychainAccessGroups")
     func keychainAccessGroups() throws {
-        #expect(entitlements.keychainAccessGroups == ["7847W99F5L.*", "com.apple.token"])
+        #expect(
+            entitlements.keychainAccessGroups == [
+                "7847W99F5L.*", "com.apple.token",
+            ])
     }
 
     @Test("parses getTaskAllow")

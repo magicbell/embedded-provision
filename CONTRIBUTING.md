@@ -6,6 +6,17 @@ Contributions are always welcome, no matter how large or small!
 
 We want this community to be friendly and respectful to each other. Please follow it in all your interactions with the project. Before contributing, please read the [code of conduct](./CODE_OF_CONDUCT.md).
 
+## Setup
+
+We automate some common tasks, like code formatting, linting, and release notes, using tools from the Javascript ecosystem.
+We use a tool called [Husky](https://typicode.github.io/husky/) to manage our git hooks.
+
+To enable Husky, run the following commands in the root repo directory:
+
+```shell
+yarn install
+```
+
 ## Development workflow
 
 1. Do your changes

@@ -29,6 +29,8 @@ jobs:
             ${{ runner.os }}-spm-
       - name: Build
         run: swift build --build-tests
+      - name: Lint
+        run: swift format lint --parallel --recursive --strict Package.swift Sources Tests
       - name: Test
         run: swift test --parallel --skip-build --xunit-output ./reports/xcunit.xml
       - name: Publish Test Report
