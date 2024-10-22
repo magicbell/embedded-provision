@@ -1,5 +1,11 @@
 # embedded-provision
 
+## 1.1.1
+
+### Patch Changes
+
+- [#10](https://github.com/magicbell/embedded-provision/pull/10) [`c933d0e`](https://github.com/magicbell/embedded-provision/commit/c933d0e11a16c626376aa5dcb044e4dd08816c60) Thanks [@stigi](https://github.com/stigi)! - Fix for ASN1Decoder dependency missing from cocoapods and carthage
+
 ## 1.1.0
 
 ### Minor Changes
